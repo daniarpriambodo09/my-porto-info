@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight, CheckCircle2, Sparkles, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  ExternalLink,
+  Sparkles,
+  X,
+} from "lucide-react";
 import {
   PROJECT_FILTERS,
   PROJECTS,
@@ -110,8 +116,21 @@ export function ProjectsBento() {
                       {project.category}
                     </span>
                     {project.status && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-300">
-                        <Sparkles className="h-3 w-3" aria-hidden="true" />
+                      <span
+                        className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${
+                          project.status === "Live"
+                            ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300"
+                            : "border-amber-400/30 bg-amber-400/10 text-amber-300"
+                        }`}
+                      >
+                        {project.status === "Live" ? (
+                          <span
+                            className="h-1.5 w-1.5 rounded-full bg-emerald-400"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Sparkles className="h-3 w-3" aria-hidden="true" />
+                        )}
                         {project.status}
                       </span>
                     )}
@@ -147,21 +166,34 @@ export function ProjectsBento() {
                   )}
                 </div>
 
-                <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
+                <div className="flex items-center justify-between gap-2 border-t border-white/[0.06] pt-4">
                   <span className="truncate text-xs text-zinc-500">
                     {project.org}
                   </span>
-                  <button
-                    type="button"
-                    onClick={() => setSelected(project)}
-                    className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold text-blue-400 transition-colors hover:text-blue-300"
-                  >
-                    Detail proyek
-                    <ArrowUpRight
-                      className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      aria-hidden="true"
-                    />
-                  </button>
+                  <div className="flex shrink-0 items-center gap-3">
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-semibold text-emerald-300 transition-colors hover:border-emerald-400/50 hover:bg-emerald-400/20"
+                      >
+                        Live
+                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                      </a>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => setSelected(project)}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-blue-400 transition-colors hover:text-blue-300"
+                    >
+                      Detail proyek
+                      <ArrowUpRight
+                        className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.article>
@@ -262,6 +294,20 @@ export function ProjectsBento() {
                   ))}
                 </div>
               </div>
+
+              {selected.href && (
+                <div className="mt-6 flex justify-end border-t border-white/[0.08] pt-5">
+                  <a
+                    href={selected.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-5 py-2.5 text-xs font-semibold text-white shadow-[0_0_24px_rgba(59,130,246,0.4)] transition-all hover:bg-blue-400"
+                  >
+                    Kunjungi Aplikasi ({selected.href.replace(/^https?:\/\//, "")})
+                    <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}
