@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import {
   ArrowDownRight,
-  Download,
   GraduationCap,
   Database,
   MapPin,
@@ -51,16 +50,6 @@ export function HeroSection() {
             >
               Lihat Proyek
               <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <a
-              href={PROFILE.cvUrl}
-              download="CV-Daniar-Priambodo.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-6 py-3 text-sm font-medium text-zinc-200 backdrop-blur-md transition-all hover:border-blue-400/40 hover:bg-white/[0.08]"
-            >
-              <Download className="h-4 w-4 text-blue-400" aria-hidden="true" />
-              Unduh CV
             </a>
           </div>
 

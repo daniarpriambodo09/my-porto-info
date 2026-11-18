@@ -60,7 +60,6 @@ export const PROFILE = {
   availability: "Terbuka untuk kolaborasi & peluang baru",
   location: "Surabaya, Indonesia",
   institution: "PENS / EEPIS",
-  cvUrl: "/CV-Daniar-Priambodo.pdf",
   avatarUrl: "/images/daniar-avatar.png",
   heroPhotoUrl: "/images/daniar-hero.jpg",
   email: "daniarpriambodo11@gmail.com",
